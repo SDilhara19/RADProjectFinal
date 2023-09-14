@@ -16,7 +16,7 @@ const EditBorrow = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5555/books/${id}`)
+    axios.get(`http://localhost:5173/borrow/${id}`)
     .then((response) => {
         setBookId(response.data.BookId);
         setReturneDate(response.data.ReturneDate)
@@ -37,7 +37,7 @@ const EditBorrow = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5555/books/${id}`, data)
+      .put(`http://localhost:5173/borrow${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Borrow Edited successfully', { variant: 'success' });
