@@ -19,7 +19,7 @@ const CreateUser = () => {
     };
     setLoading(true);
     axios
-      .post('http://localhost:5555/books', data)
+      .post('http://localhost:5173/user', data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('User Created successfully', { variant: 'success' });
