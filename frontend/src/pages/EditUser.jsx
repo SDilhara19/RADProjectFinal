@@ -15,7 +15,7 @@ const EditUser = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5555/books/${id}`)
+    axios.get(`http://localhost:5173/user/${id}`)
     .then((response) => {
         setAuthor(response.data.author);
         setPublishYear(response.data.publishYear)
@@ -35,7 +35,7 @@ const EditUser = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5555/books/${id}`, data)
+      .put(`http://localhost:5173/user/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('User Edited successfully', { variant: 'success' });
