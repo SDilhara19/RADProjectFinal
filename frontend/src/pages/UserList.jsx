@@ -16,7 +16,7 @@ const UserList = () => {
     useEffect(() => {
         setLoading(true);
         axios
-            .get('http://localhost:5555/books')
+            .get('http://localhost:5173/user')
             .then((response) => {
                 setUser(response.data.data);
                 setLoading(false);
