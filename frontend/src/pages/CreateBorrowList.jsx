@@ -5,24 +5,27 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
-const CreateUser = () => {
-  const [name, setName] = useState('');
-  const [nic, setNIC] = useState('');
+const CreateBorrow = () => {
+  const [BookId, setBookID] = useState('');
+  const [UserId, setUserId] = useState('');
+  const [ReturneDate, setReturnDate] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
-  const handleSaveUser= () => {
+  const handleSaveBorrow = () => {
     const data = {
-      name,
-      nic,
+      BookId,
+      UserId,
+      ReturneDate,
+
     };
     setLoading(true);
     axios
-      .post('http://localhost:5555', data)
+      .post('http://localhost:5173/borrow', data)
       .then(() => {
         setLoading(false);
-        enqueueSnackbar('User Created successfully', { variant: 'success' });
+        enqueueSnackbar('Borrow Created successfully', { variant: 'success' });
         navigate('/');
       })
       .catch((error) => {
@@ -36,29 +39,37 @@ const CreateUser = () => {
   return (
     <div className='p-4'>
       <BackButton />
-      <h1 className='text-3xl my-4'>Create User</h1>
+      <h1 className='text-3xl my-4'>Create Borrow</h1>
       {loading ? <Spinner /> : ''}
       <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
         <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Name</label>
+          <label className='text-xl mr-4 text-gray-500'>BookId</label>
           <input
             type='text'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={BookId}
+            onChange={(e) => setBookId(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2 w-full'
           />
         </div>
         <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>NIC</label>
+          <label className='text-xl mr-4 text-gray-500'>UserId</label>
           <input
             type='text'
-            value={nic}
-            onChange={(e) => setNIC(e.target.value)}
+            value={UserId}
+            onChange={(e) => setUserId(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2  w-full '
           />
         </div>
-         
-        <button className='p-2 bg-sky-300 m-8' onClick={handleSaveUser}>
+        <div className='my-4'>
+          <label className='text-xl mr-4 text-gray-500'>Return Date</label>
+          <input
+            type='number'
+            value={ReturneDate}
+            onChange={(e) => setReturnDater(e.target.value)}
+            className='border-2 border-gray-500 px-4 py-2  w-full '
+          />
+        </div>
+        <button className='p-2 bg-sky-300 m-8' onClick={handleSaveBook}>
           Save
         </button>
       </div>
@@ -66,4 +77,4 @@ const CreateUser = () => {
   );
 }
 
-export default CreateUser
+export default CreateBorrow

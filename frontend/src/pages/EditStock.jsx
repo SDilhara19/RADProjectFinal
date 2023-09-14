@@ -5,9 +5,9 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
-const EditUser = () => {
-  const [Name, setName] = useState('');
-  const [NIC, setNIC] = useState('');
+const EditStock = () => {
+  const [BookId, setBookId] = useState('');
+  const [AvailableStock, setStock] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {id} = useParams();
@@ -15,10 +15,10 @@ const EditUser = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5555/books/${id}`)
+    axios.get(`http://localhost:5173/stocks/${id}`)
     .then((response) => {
-        setName(response.data.name);
-        setNIC(response.data.nic);
+        setBookId(response.data.BookId);
+        setStock(response.data.AvailableStock)
         setLoading(false);
       }).catch((error) => {
         setLoading(false);
@@ -27,17 +27,17 @@ const EditUser = () => {
       });
   }, [])
   
-  const handleEditUser = () => {
+  const handleEditBook = () => {
     const data = {
-      Name,
-      NIC,
+      BookId,
+      AvailableStock,
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5555/users/${id}`, data)
+      .put(`http://localhost:5173/stocks/${id}`, data)
       .then(() => {
         setLoading(false);
-        enqueueSnackbar('User Edited successfully', { variant: 'success' });
+        enqueueSnackbar('Stock Edited successfully', { variant: 'success' });
         navigate('/');
       })
       .catch((error) => {
@@ -51,28 +51,28 @@ const EditUser = () => {
   return (
     <div className='p-4'>
       <BackButton />
-      <h1 className='text-3xl my-4'>Edit User</h1>
+      <h1 className='text-3xl my-4'>Edit Stock</h1>
       {loading ? <Spinner /> : ''}
       <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
         <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Name</label>
+          <label className='text-xl mr-4 text-gray-500'>Book ID</label>
           <input
             type='text'
-            value={Name}
-            onChange={(e) => setName(e.target.value)}
+            value={BookId}
+            onChange={(e) => setBookId(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2 w-full'
           />
         </div>
         <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>NIC</label>
+          <label className='text-xl mr-4 text-gray-500'>Available Stock</label>
           <input
             type='text'
-            value={NIC}
-            onChange={(e) => setNIC(e.target.value)}
+            value={AvailableStock}
+            onChange={(e) => setStock(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2  w-full '
           />
         </div>
-        <button className='p-2 bg-sky-300 m-8' onClick={handleEditUser}>
+        <button className='p-2 bg-sky-300 m-8' onClick={handleEditBook}>
           Save
         </button>
       </div>
@@ -80,4 +80,4 @@ const EditUser = () => {
   )
 }
 
-export default EditUser
+export default EditStock

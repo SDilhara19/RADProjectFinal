@@ -4,17 +4,17 @@ import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 
-const ShowUser = () => {
-  const [user, setUser] = useState({});
+const ShowBorrow = () => {
+  const [BookId, setBookId] = useState({});
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5555/books/${id}`)
+      .get(`http://localhost:5173/borrow/${id}`)
       .then((response) => {
-        setUser(response.data);
+        setBookId(response.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -26,30 +26,34 @@ const ShowUser = () => {
   return (
     <div className='p-4'>
       <BackButton />
-      <h1 className='text-3xl my-4'>Show User</h1>
+      <h1 className='text-3xl my-4'>Show Book</h1>
       {loading ? (
         <Spinner />
       ) : (
         <div className='flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4'>
           <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>ID</span>
-            <span>{user._id}</span>
+            <span className='text-xl mr-4 text-gray-500'>Id</span>
+            <span>{book._id}</span>
           </div>
           <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>Name</span>
-            <span>{user.name}</span>
+            <span className='text-xl mr-4 text-gray-500'>Book ID</span>
+            <span>{book.BookId}</span>
           </div>
           <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>NIC</span>
-            <span>{user.nic}</span>
+            <span className='text-xl mr-4 text-gray-500'>User ID</span>
+            <span>{book.UserId}</span>
+          </div>
+          <div className='my-4'>
+            <span className='text-xl mr-4 text-gray-500'>Return Date</span>
+            <span>{book.ReturneDate}</span>
           </div>
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Create Time</span>
-            <span>{new Date(user.createdAt).toString()}</span>
+            <span>{new Date(book.createdAt).toString()}</span>
           </div>
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Last Update Time</span>
-            <span>{new Date(user.updatedAt).toString()}</span>
+            <span>{new Date(book.updatedAt).toString()}</span>
           </div>
         </div>
       )}
@@ -57,4 +61,4 @@ const ShowUser = () => {
   );
 };
 
-export default ShowUser;
+export default ShowBorrow;
