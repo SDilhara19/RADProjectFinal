@@ -1,5 +1,5 @@
 import express from 'express';
-import { Borrow } from '../models/bookModel.js';
+import { Borrow } from '../models/GenreModel.js';
 
 const router = express.Router();
 
