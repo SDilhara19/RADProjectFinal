@@ -6,7 +6,7 @@ const genreSchema = mongoose.Schema(
             type:String,
             required: true,
         },
-        BookId: {
+        Book: {
             type: Number,
             required: true,
         },

@@ -4,6 +4,9 @@ import mongoose from 'mongoose';
 import { Book } from './models/bookModel.js';
 import booksRoute from './routes/booksRoute.js';
 import usersRoute from './routes/usersRoute.js';
+import borrowRoute from './routes/brrowRoute.js';
+import stockRoute from './routes/stockRoute.js';
+import genreRoute from './routes/genreRoute.js';
 import cors from "cors";
 
 const app = express();
@@ -21,6 +24,9 @@ app.get('/', (request, response) => {
 
 app.use('/books', booksRoute);
 app.use('/users', usersRoute);
+app.use('/genre', genreRoute);
+app.use('/borrow', borrowRoute);
+app.use('/stock', stockRoute);
 
 mongoose
     .connect(mongoDBURL)

@@ -2,16 +2,16 @@ import mongoose from "mongoose";
 
 const borrowSchema = mongoose.Schema(
     {
-        UserId: { 
-            type:Number,
+        User: { 
+            type:String,
             required: true,
         },
-        BookId: {
-            type: Number,
+        Book: {
+            type: String,
             required: true,
         },
        ReturneDate: {
-            type: Date,
+            type: Number,
             required: true,
         },
     },
