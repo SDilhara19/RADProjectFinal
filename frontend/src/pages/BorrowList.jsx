@@ -5,20 +5,19 @@ import { Link } from 'react-router-dom';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
-import BoorrowTable from '../components/home/BorrowTable';
-import BookId from '../components/home/BookId';
+//import BoorrowTable from '../components/home/BorrowTable';
+
 
 const BorrowList = () => {
-    const [BookIds, setBookId] = useState([]);
+    const [Borrow, setBorrow] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [showType, setShowType] = useState('table');
 
     useEffect(() => {
         setLoading(true);
         axios
-            .get('http://localhost:5173/borrow')
+            .get('http://localhost:5555/borrow')
             .then((response) => {
-                setBooks(response.data.data);
+                setBorrow(response.data.data);
                 setLoading(false);
             })
             .catch((error) => {
@@ -29,20 +28,6 @@ const BorrowList = () => {
 
     return (
         <div className='p-4'>
-            <div className='flex justify-center items-center gap-x-4'>
-                <button
-                    className='bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg'
-                    onClick={() => setShowType('table')}
-                >
-                    Table
-                </button>
-                <button
-                    className='bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg'
-                    onClick={() => setShowType('Id')}
-                >
-                    Card
-                </button>
-            </div>
             <div className='flex justify-between items-center'>
                 <h1 className='text-3xl my-8'>Borrow List</h1>
                 <Link to='/borrow/create'>
@@ -51,10 +36,7 @@ const BorrowList = () => {
             </div>
             {loading ? (
                 <Spinner />
-            ) : showType === 'table' ? (
-                <BorrowTable borrow={borrow} />
-            ) : (
-                <BookId borrow={borrow} />
+            ) :(/*<BorrowTable borrow={borrow} />*/<Spinner />
             )}
         </div>
     );

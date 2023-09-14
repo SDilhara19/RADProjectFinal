@@ -14,7 +14,7 @@ const DeleteBorrow = () => {
   const handleDeleteBorrow = () => {
     setLoading(true);
     axios
-      .delete(`http://localhost:5173/borrow/${id}`)
+      .delete(`http://localhost:5555/borrow/${id}`)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Borrow Deleted successfully', { variant: 'success' });

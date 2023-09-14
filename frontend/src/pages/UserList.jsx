@@ -8,14 +8,14 @@ import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 import UsersTable from '../components/home/UsersTable';
 
 const UserList = () => {
-    const [users, setBooks] = useState([]);
+    const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         setLoading(true);
         axios
             .get('http://localhost:5555/users')
             .then((response) => {
-                setBooks(response.data.data);
+                setUsers(response.data.data);
                 setLoading(false);
             })
             .catch((error) => {

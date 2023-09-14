@@ -4,17 +4,17 @@ import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 
-const ShowBorrow = () => {
-  const [Book, setBook] = useState({});
+const ShowInShelf = () => {
+  const [inShelf, setInShelf] = useState({});
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5555/borrow/${id}`)
+      .get(`http://localhost:5555/inShelfs/${id}`)
       .then((response) => {
-        setBook(response.data);
+        setInShelf(response.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -26,34 +26,34 @@ const ShowBorrow = () => {
   return (
     <div className='p-4'>
       <BackButton />
-      <h1 className='text-3xl my-4'>Show Book</h1>
+      <h1 className='text-3xl my-4'>Show InShelf</h1>
       {loading ? (
         <Spinner />
       ) : (
         <div className='flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4'>
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Id</span>
-            <span>{borrow._id}</span>
+            <span>{inShelf._id}</span>
           </div>
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Book</span>
-            <span>{borrow.Book}</span>
+            <span>{inShelf.book}</span>
           </div>
           <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>User</span>
-            <span>{borrow.User}</span>
+            <span className='text-xl mr-4 text-gray-500'>Author</span>
+            <span>{inShelf.availability}</span>
           </div>
           <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>Return Date</span>
-            <span>{borrow.ReturneDate}</span>
+            <span className='text-xl mr-4 text-gray-500'>Publish Year</span>
+            <span>{inShelf.shelfNo}</span>
           </div>
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Create Time</span>
-            <span>{new Date(borrow.createdAt).toString()}</span>
+            <span>{new Date(inShelf.createdAt).toString()}</span>
           </div>
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Last Update Time</span>
-            <span>{new Date(borrow.updatedAt).toString()}</span>
+            <span>{new Date(inShelf.updatedAt).toString()}</span>
           </div>
         </div>
       )}
@@ -61,4 +61,4 @@ const ShowBorrow = () => {
   );
 };
 
-export default ShowBorrow;
+export default ShowInShelf;
