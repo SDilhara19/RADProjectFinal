@@ -12,7 +12,7 @@ const ShowBorrow = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5555/books/${id}`)
+      .get(`http://localhost:5173/borrow/${id}`)
       .then((response) => {
         setBookId(response.data);
         setLoading(false);
