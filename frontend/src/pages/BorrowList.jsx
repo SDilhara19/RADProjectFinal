@@ -16,7 +16,7 @@ const BorrowList = () => {
     useEffect(() => {
         setLoading(true);
         axios
-            .get('http://localhost:5555/books')
+            .get('http://localhost:5173/borrow')
             .then((response) => {
                 setBooks(response.data.data);
                 setLoading(false);
