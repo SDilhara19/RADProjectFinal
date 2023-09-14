@@ -11,34 +11,41 @@ import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md'
  
 
 const Home = () => {
-    const [books, setBooks] = useState([]);
-    const [loading, setLoading] = useState(false);
-    useEffect(() => {
-        setLoading(true);
-        axios
-            .get('http://localhost:5555/books')
-            .then((response) => {
-                setBooks(response.data.data);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.log(error);
-                setLoading(false);
-            });
-
-    }, []);
     return (
-        //<Layout>
-    <div className='text-center'>
+      <div className='text-center'>
         <h1 className='text-3xl my-4'>Home Page</h1>
-        <Link to='/books/bookList'>
-            <MdOutlineAddBox className='text-sky-800 text-4xl' />
-        </Link>
-    </div>
-    //</Layout>
+        <div className="flex justify-center space-x-4 my-4">
+          <Link to='/books/bookList'>
+            <img
+              src='../assets/userimage.jpg'
+              alt='Books'
+              className='w-32 h-32 rounded-full cursor-pointer'
+            />
+          </Link>
+          <Link to='/users/userList'>
+            <img
+              src='/path/to/your/image2.jpg'
+              alt='Users'
+              className='w-32 h-32 rounded-full cursor-pointer'
+            />
+          </Link>
+          <Link to='/topic3'>
+            <img
+              src='/path/to/your/image3.jpg'
+              alt='Topic 3'
+              className='w-32 h-32 rounded-full cursor-pointer'
+            />
+          </Link>
+          <Link to='/topic4'>
+            <img
+              src='/path/to/your/image4.jpg'
+              alt='Topic 4'
+              className='w-32 h-32 rounded-full cursor-pointer'
+            />
+          </Link>
+        </div>
+      </div>
     );
-};
-
-
-
-export default Home
+  };
+  
+  export default Home;
