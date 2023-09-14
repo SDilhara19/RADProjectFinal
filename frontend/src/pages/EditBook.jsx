@@ -41,7 +41,7 @@ const EditBook = () => {
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Book Edited successfully', { variant: 'success' });
-        navigate('/');
+        navigate('/books');
       })
       .catch((error) => {
         setLoading(false);

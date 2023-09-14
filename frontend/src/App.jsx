@@ -5,14 +5,14 @@ import EditBook from './pages/EditBook';
 import ShowBook from './pages/ShowBook';
 import DeleteBook from './pages/DeleteBook';
 import Home from './pages/Home';
-import BookList from './pages/BookList.jsx';
+import Books from './pages/Books.jsx';
 
 
 const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/books/bookList' element={<BookList />} />
+      <Route path='/books' element={<Books />} />
       <Route path='/books/create' element={<CreateBooks />} />
       <Route path='/books/details/:id' element={<ShowBook />} />
       <Route path='/books/edit/:id' element={<EditBook />} />
