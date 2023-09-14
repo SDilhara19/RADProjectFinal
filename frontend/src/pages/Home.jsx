@@ -27,7 +27,7 @@ const Home = () => {
             <Link to='/stocks'>
                     <BiUserCircle className='text-sky-800 text-4xl' style={{ fontSize: '150px' }}/>
             </Link>
-            <Link to='/burrowd'>
+            <Link to='/burrowed'>
                     <BiUserCircle className='text-sky-800 text-4xl' style={{ fontSize: '150px' }}/>
             </Link>
         </div>

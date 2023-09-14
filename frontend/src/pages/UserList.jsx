@@ -5,56 +5,36 @@ import { Link } from 'react-router-dom';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
-import UsersTable from '../components/home/UserssTable';
-import NIC from '../components/home/NIC';
+import UsersTable from '../components/home/UsersTable';
 
 const UserList = () => {
-    const [users, setUser] = useState([]);
+    const [users, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [showType, setShowType] = useState('table');
-
     useEffect(() => {
         setLoading(true);
         axios
-            .get('http://localhost:5555/books')
+            .get('http://localhost:5555/users')
             .then((response) => {
-                setUser(response.data.data);
+                setBooks(response.data.data);
                 setLoading(false);
             })
             .catch((error) => {
                 console.log(error);
                 setLoading(false);
             });
-    }, []);
 
+    }, []);
     return (
         <div className='p-4'>
-            <div className='flex justify-center items-center gap-x-4'>
-                <button
-                    className='bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg'
-                    onClick={() => setShowType('table')}
-                >
-                    Table
-                </button>
-                <button
-                    className='bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg'
-                    onClick={() => setShowType('NIC')}
-                >
-                    Card
-                </button>
-            </div>
             <div className='flex justify-between items-center'>
-                <h1 className='text-3xl my-8'>User List</h1>
+                <h1 className='text-3x1 my-8'> Users List</h1>
                 <Link to='/users/create'>
-                    <MdOutlineAddBox className='text-sky-800 text-4xl' />
+                    <MdOutlineAddBox className='text-sky-800 text-4x1' />
                 </Link>
             </div>
             {loading ? (
                 <Spinner />
-            ) : showType === 'table' ? (
-                <UsersTable users={users} />
-            ) : (
-                <NIC users={users} />
+            ) : (<UsersTable users={users} />
             )}
         </div>
     );

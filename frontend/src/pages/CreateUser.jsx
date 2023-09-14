@@ -6,20 +6,20 @@ import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
 const CreateUser = () => {
-  const [Name, setName] = useState('');
-  const [author, setNIC] = useState('');
+  const [name, setName] = useState('');
+  const [nic, setNIC] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
   const handleSaveUser= () => {
     const data = {
-      Name,
-      NIC,
+      name,
+      nic,
     };
     setLoading(true);
     axios
-      .post('http://localhost:5555/books', data)
+      .post('http://localhost:5555/users', data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('User Created successfully', { variant: 'success' });
@@ -43,7 +43,7 @@ const CreateUser = () => {
           <label className='text-xl mr-4 text-gray-500'>Name</label>
           <input
             type='text'
-            value={Name}
+            value={name}
             onChange={(e) => setName(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2 w-full'
           />
@@ -52,7 +52,7 @@ const CreateUser = () => {
           <label className='text-xl mr-4 text-gray-500'>NIC</label>
           <input
             type='text'
-            value={NIC}
+            value={nic}
             onChange={(e) => setNIC(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2  w-full '
           />

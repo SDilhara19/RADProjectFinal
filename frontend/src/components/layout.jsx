@@ -1,4 +1,4 @@
-// Layout.js
+
 import React from 'react';
 
 const Layout = ({ children }) => {

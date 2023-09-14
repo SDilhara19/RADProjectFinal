@@ -6,8 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
 const EditUser = () => {
-  const [Name, setTitle] = useState('');
-  const [NIC, setAuthor] = useState('');
+  const [Name, setName] = useState('');
+  const [NIC, setNIC] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {id} = useParams();
@@ -15,11 +15,10 @@ const EditUser = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5555/books/${id}`)
+    axios.get(`http://localhost:5555/users/${id}`)
     .then((response) => {
-        setAuthor(response.data.author);
-        setPublishYear(response.data.publishYear)
-        setTitle(response.data.title)
+        setName(response.data.name);
+        setNIC(response.data.nic);
         setLoading(false);
       }).catch((error) => {
         setLoading(false);
@@ -35,7 +34,7 @@ const EditUser = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5555/books/${id}`, data)
+      .put(`http://localhost:5555/users/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('User Edited successfully', { variant: 'success' });
@@ -60,7 +59,7 @@ const EditUser = () => {
           <input
             type='text'
             value={Name}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2 w-full'
           />
         </div>
@@ -69,7 +68,7 @@ const EditUser = () => {
           <input
             type='text'
             value={NIC}
-            onChange={(e) => setAuthor(e.target.value)}
+            onChange={(e) => setNIC(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2  w-full '
           />
         </div>

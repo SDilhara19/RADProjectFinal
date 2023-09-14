@@ -12,9 +12,9 @@ const ShowUser = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5555/books/${id}`)
+      .get(`http://localhost:5555/users/${id}`)
       .then((response) => {
-        setBook(response.data);
+        setUser(response.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -32,12 +32,16 @@ const ShowUser = () => {
       ) : (
         <div className='flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4'>
           <div className='my-4'>
+            <span className='text-xl mr-4 text-gray-500'>ID</span>
+            <span>{user._id}</span>
+          </div>
+          <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Name</span>
-            <span>{Name}</span>
+            <span>{user.name}</span>
           </div>
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>NIC</span>
-            <span>{NIC}</span>
+            <span>{user.nic}</span>
           </div>
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Create Time</span>
@@ -53,4 +57,4 @@ const ShowUser = () => {
   );
 };
 
-export default ShowBook;
+export default ShowUser;
