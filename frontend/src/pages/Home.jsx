@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+//import Layout from '../components/Layout';
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
@@ -27,12 +28,14 @@ const Home = () => {
 
     }, []);
     return (
+        //<Layout>
     <div className='text-center'>
         <h1 className='text-3xl my-4'>Home Page</h1>
         <Link to='/books/bookList'>
             <MdOutlineAddBox className='text-sky-800 text-4xl' />
         </Link>
     </div>
+    //</Layout>
     );
 };
 
